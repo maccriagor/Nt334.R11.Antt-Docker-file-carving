@@ -1,7 +1,7 @@
-# Nt334.R11.Antt-Docker-file-carving
+
 # Docker `json-file` Log Carver (Baseline Implementation)
 
-Công cụ khôi phục dữ liệu pháp y số (Digital Forensics) cho phép trích xuất và tái lắp ghép các file log của Docker container (`json-file` logging driver) từ ảnh đĩa thô mà **không cần phụ thuộc vào metadata của hệ thống tập tin** (inode, superblock).
+Công cụ Digital Forensics cho phép trích xuất và tái hiện các file log của Docker container từ disk image **không phụ thuộc vào metadata của hệ thống tập tin** .
 
 Dự án được xây dựng dựa trên kiến trúc và thuật toán trong bài báo nghiên cứu:
 > **A novel file carving algorithm for docker container logs recorded by json-file logging driver**  
@@ -15,12 +15,12 @@ Dự án được tổ chức theo kiến trúc module hóa gồm 1 script tạo
 
 ```text
 .
-├── generate_sample.py   # Tạo ảnh đĩa thô giả lập (raw disk image) và dữ liệu đối chứng
-├── main.py              # Điểm vào chương trình (CLI), điều phối luồng chạy và đo thời gian
+├── generate_sample.py   # Tạo raw disk image và dữ liệu đối chứng
+├── main.py              # Điều phối luồng chạy và đo thời gian
 ├── scanner.py           # Quét sector, lọc nhiễu bằng Discriminator và phân loại khối (List_1..3)
 ├── indexer.py           # Tách từ/câu/thông điệp (xử lý mã ANSI) và dựng cây Tiền tố/Hậu tố, m-VP tree
 ├── reassembler.py       # Ghép nối mảnh vỡ 4 pha, tính điểm SOC (18 thành phần) và bỏ phiếu xung đột
-└── evaluator.py         # Xuất file log khôi phục và tính toán chỉ số Precision / Recall
+└── evaluator.py         # Xuất file log khôi phục và tính toán độ chính xác
 ```
 
 ---
@@ -39,8 +39,8 @@ Dự án được tổ chức theo kiến trúc module hóa gồm 1 script tạo
 
 ## Môi trường & Cài đặt
 
-* **Hệ điều hành:** Ubuntu 26.04 (hoặc các bản phân phối Linux tương đương)
-* **Ngôn ngữ:** Python 3.12+ (chỉ sử dụng thư viện chuẩn, không yêu cầu cài đặt thư viện ngoài hoặc quyền `root`)
+* **Hệ điều hành:** Ubuntu 26.04 .
+* **Ngôn ngữ:** Python 3.12+ .
 
 ---
 
